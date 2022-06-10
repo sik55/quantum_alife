@@ -9,22 +9,20 @@ from scipy.interpolate import interp1d
 import game_of_life_patterns
 from quantum_game_of_life import quantum_2d_cellular_automaton
 
+# 初期状態のパターン : ファイルから読み込むか、直接指定する
 # pattern = game_of_life_patterns.CENTER_20
 CENTER_20 = np.array(
-    [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-     [0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0],
-     [0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0],
-     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]])
+    [[0, 0, 0, 0, 0, 0, 0, 0, 0],
+     [0, 0, 0, 0, 0, 0, 0, 0, 0],
+     [0, 0, 0, 0, 0, 0, 0, 0, 0],
+     [0, 0, 0, 0, 0, 0, 0, 0, 0],
+     [0, 0, 0, 0, 0, 0, 0, 0, 0],
+     [0, 0, 0, 0, 0, 0, 0, 0, 0],
+     [0, 0, 0, 0, 0, 0, 1, 1, 1],
+     [0, 0, 0, 0, 0, 0, 1, 1, 1]])
 
 
-def plot_graph(x, y, graph_file):
+def plot_graph(x, y, graph_file_name):
     x = df['time_step']
     y = df['data']
     f2 = interp1d(x, y, kind='cubic')
@@ -32,14 +30,13 @@ def plot_graph(x, y, graph_file):
     fig = plt.figure()
     plt.plot(x, y, 'o', new, f2(new), '-')
     plt.legend(['data', 'cubic'], loc='best')
-    fig.savefig(graph_file)
+    fig.savefig(graph_file_name)
     # plt.show()
 
 
 # 出力フォルダ
-path = 'D:/github/quantum_alife/alife/'
+path = 'D:/github/quantum_alife/alife/out/'
 
-# data_20220610_170757
 timestamp = "{0:%Y%m%d_%H%M%S}".format(datetime.datetime.now())
 data_file = path + 'data_' + timestamp + '.txt'
 graph_file = path + 'data_graph_' + timestamp + '.png'
