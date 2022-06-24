@@ -183,7 +183,7 @@ def quantum_2d_cellular_automaton(width=20,
         state, next_state, state_gen, next_state_gen = next_state, state, next_state_gen, state_gen
 
         # 表示をアップデート
-        visualizer.update(1 - state_gen)  # 1を黒, 0を白で表示する、背景は白0になる（1の反対色） # 寿命を色見にする
+        visualizer.update(1 - state_gen)
 
         # 個体の数をセット
         out.append([loop, count_tmp])
@@ -194,6 +194,5 @@ def quantum_2d_cellular_automaton(width=20,
             df.to_csv(outfile)
             visualizer.close()
             return df
-            # break
 
     return
